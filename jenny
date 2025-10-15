@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardioo - Connect with Like-Minded Adults</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #ff3e6c;
+            --primary-dark: #e2335f;
+            --secondary: #6c63ff;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0f0f1a;
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 20px 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 60px 0;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            z-index: 10;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #ddd;
+        }
+        
+        /* Steps Section */
+        .steps {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .steps h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: transform 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+        }
+        
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.3);
+        }
+        
+        .step h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .step p {
+            color: #bbb;
+        }
+        
+        .time-note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 30px 0 60px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(255, 62, 108, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 62, 108, 0.6);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 62, 108, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 62, 108, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 62, 108, 0);
+            }
+        }
+        
+        /* Background Elements */
+        .bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .bg-image {
+            position: absolute;
+            border-radius: 10px;
+            opacity: 0.4;
+            transition: transform 0.5s ease;
+        }
+        
+        .bg-image:hover {
+            opacity: 0.6;
+            transform: scale(1.05);
+        }
+        
+        .bg-1 {
+            top: 15%;
+            right: 5%;
+            width: 250px;
+            height: 350px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') center/cover;
+        }
+        
+        .bg-2 {
+            bottom: 10%;
+            right: 20%;
+            width: 200px;
+            height: 300px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') center/cover;
+        }
+        
+        .bg-3 {
+            top: 25%;
+            right: 35%;
+            width: 180px;
+            height: 250px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60') center/cover;
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .steps-container {
+                flex-direction: column;
+            }
+            
+            .bg-elements {
+                display: none;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Cardi<span>oo</span></a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover Authentic Connections in Our Exclusive Adult Community</h1>
+                <p>Join thousands of like-minded adults exploring meaningful connections in a safe, respectful environment designed for mature interactions.</p>
+                
+                <!-- Steps Section -->
+                <div class="steps">
+                    <h2>Get Started in Just 3 Simple Steps</h2>
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-icon">1</div>
+                            <h3>Create Your Profile</h3>
+                            <p>Set up your account with basic information. Choose a username that represents you.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">2</div>
+                            <h3>Upload a Profile Photo</h3>
+                            <p>Add any photo to personalize your profile. This helps others recognize you.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">3</div>
+                            <h3>Confirm Your Email</h3>
+                            <p>Verify your account to access all features and connect with others.</p>
+                        </div>
+                    </div>
+                    <p class="time-note">Complete all steps in under 10 minutes to start connecting!</p>
+                </div>
+                
+                <!-- CTA Section -->
+                <div class="cta-section">
+                    <a href="#" class="cta-button" id="smartlink-cta">Join Our Community Now</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background Images -->
+        <div class="bg-elements">
+            <div class="bg-image bg-1"></div>
+            <div class="bg-image bg-2"></div>
+            <div class="bg-image bg-3"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Cardioo</h3>
+                    <p>Cardioo is an exclusive social platform for adults seeking genuine connections in a respectful, safe environment. We prioritize user privacy and authentic interactions.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                        <li><a href="#">Safety Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Safety Tips</a></li>
+                        <li><a href="#">Report an Issue</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Cardioo. All rights reserved. | For adults 18+ only</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Geo-targeting and redirect logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.getElementById('smartlink-cta');
+            
+            // Show loading state
+            ctaButton.textContent = 'Checking Your Region...';
+            ctaButton.style.opacity = '0.7';
+            
+            // Smartlinks
+            const smartlink1 = 'https://findmecrushes.com/tds/ae?tdsId=s1314gre_r&tds_campaign=s1314gre&s1=ps&utm_source=int&utm_sub=opnfnl&affid=8430d8b0&subid={subid}&subid2={blogger}&clickid={clickid}';
+            const smartlink2 = 'https://lz517nv.dailytheromance-spot.com/ml0h154?s1=Blogger';
+            const smartlink3 = 'https://promoteconditionerkeyboard.com/pupyam3k?key=ee3822f3b073737df95b0f6b536938c1';
+            
+            // Country lists
+            const smartlink1Countries = ['AT', 'CH', 'SE', 'FI', 'BE', 'SI', 'HR', 'GR', 'HU', 'CZ', 'AU', 'NZ', 'GB'];
+            const tier2Countries = ['US', 'CA', 'DE', 'FR', 'IT', 'ES', 'NL', 'NO', 'DK', 'IE', 'SG', 'JP', 'KR'];
+            
+            // Get user's country using a free IP geolocation API
+            fetch('https://api.country.is/')
+                .then(response => response.json())
+                .then(data => {
+                    const countryCode = data.country;
+                    let targetLink;
+                    
+                    // Determine which smartlink to use based on country
+                    if (smartlink1Countries.includes(countryCode)) {
+                        targetLink = smartlink1;
+                    } else if (tier2Countries.includes(countryCode)) {
+                        targetLink = smartlink2;
+                    } else {
+                        targetLink = smartlink3;
+                    }
+                    
+                    // Update the CTA button
+                    ctaButton.href = targetLink;
+                    ctaButton.textContent = 'Join Our Community Now';
+                    ctaButton.style.opacity = '1';
+                    
+                    // Add click tracking
+                    ctaButton.addEventListener('click', function(e) {
+                        // You can add tracking code here
+                        console.log('Redirecting to:', targetLink);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error detecting country:', error);
+                    // Fallback to Smartlink 2 if detection fails
+                    ctaButton.href = smartlink2;
+                    ctaButton.textContent = 'Join Our Community Now';
+                    ctaButton.style.opacity = '1';
+                });
+        });
+        
+        // Add simple animations to steps
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            
+            steps.forEach((step, index) => {
+                // Add delay for staggered animation
+                step.style.animationDelay = `${index * 0.2}s`;
+                step.style.animation = `fadeInUp 0.5s ease forwards`;
+                step.style.opacity = '0';
+            });
+            
+            // Add keyframes for animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(20px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
